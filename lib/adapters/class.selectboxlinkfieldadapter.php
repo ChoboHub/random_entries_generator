@@ -32,13 +32,14 @@
             $result = Symphony::Database()->fetch("
                 SELECT `entry_id`
                     FROM tbl_entries_data_$fieldId
-                    LIMIT 1
             ");
+            $maxResult = count($result);
+            $randomResult = rand(0,$maxResult);
             if (empty($result) || !is_array($result) || !is_array($result[0])) {
                 return null;
             }
             return array(
-                'relation_id' => $result[0]['entry_id'],
+                'relation_id' => $result[$randomResult]['entry_id'],
             );
         }
     }
